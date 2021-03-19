@@ -1,0 +1,434 @@
+Advent of Code 2020
+Steven Small
+Github Account: stvnsmll
+
+Programming Language: Python3
+
+Previous year completion: 2019 (19 stars) -- a bit stuck with intcode, limited time as with family for much of it.
+
+This year I recently transitioned to being a "stay-at-home" dad, so had a little bit less stress but also no spare
+"work time" to work on the puzzles. I mainly coded as the kids were falling asleep or during nap time.
+
+Goals for AoC 2020:
+    - complete as many puzzles as possible (no time limit - only within all of Dec 2020 - Nov 2021)
+    - set up automated testing for sample inputs (my own testing framework)
+    - try not to use any hits online
+
+Results from AoC 2020:
+    - 50 Stars!!! (completed all puzzles by Jan 15, 2021!)
+    - testing worked and was really helpful
+    - read a few hints, but didn't really use them much. Mostly looked online to get clarity on the inputs
+
+
+
+
+
+The following notes for each day contain a summary of the puzzle, my solution approach, programming mechanisms used,
+fuctions, and other notes or comments about how that day went.
+
+Notes by Day:
+
+
+
+--- Day 1: Report Repair ---
+Part 1:
+The sum of two numbers in a list (input) = 2020. Their product is the answer.
+[nested for-loops (with breaks)]
+Part 2:
+Same but sum of *three* numbers = 2020.
+[nested nested for-loop (with breaks)]
+
+Evaluation/Comments:
+About reviewing an expense report...
+As easy as expected for day 1. Completed on Dec 1.
+
+
+--- Day 2: Password Philosophy ---
+Part 1:
+Find if passwords in a list meet their PW rule
+[simple input parsing, conditional checking]
+Part 2:
+PW policy rules are actually positionally based
+[simple input parsing, conditional checking]
+
+Evaluation/Comments:
+About the toboggan rental shop's computer system and changing password policies.
+Almost as easy as day 1. Not much of a challenge yet. Completed on Dec 2.
+
+
+--- Day 3: Toboggan Trajectory ---
+Part 1:
+Traverse a 2D matrix and count occurances along a path.
+[2D array creation, node selection and transversal, while loop]
+Part 2:
+Same but with multiple trajectories.
+[function(!) for each trajectory, the rest the same]
+
+Evaluation/Coments:
+You've got to make it down the hill. Test different trajectories and see how many
+trees you would hit.
+A little more fun, getting ready for some map/matrix work.  Completed on Dec 3.
+
+
+--- Day 4: Passport Processing ---
+Part 1:
+Count valid passports based on having the required fields.
+[Sinple boolean function, for loops]
+Part 2:
+Add rules to each of the fields.
+[Inside the function, send info to a switchSelect class (object) to completecertain checks
+Each passport rule had a method that would run for it]
+
+Evaluation/Comments:
+Passport data processing and evaluation based on rules.
+Still quite easy. Some languages have switch cases / case selects, but not Python.  It wasn't too hard to
+create the class/object and have a method for each case.
+
+
+--- Day 5: Binary Boarding ---
+Part 1:
+Find the max seat ID in a set.
+[simple function]
+Part 2:
+Find the blank seat in the full plane seat map. Figured out I need neighbors, so I don't need to check
+the end seats.
+[same as above + nested for loops]
+
+Evaluation/Comments:
+Find your airplane seat based on halving front/back and left/right.
+
+
+--- Day 6: Custom Customs ---
+Part 1:
+Counting groups and sets.
+[simple function, arrays]
+Part 2:
+A little more complex... not difficult though.
+[simple function + some if statements]
+
+Evaluation/Comments:
+Customs forms for groups, count any yes or every yes.
+
+
+--- Day 7: Handy Haversacks ---
+Part 1:
+Count the starting bag that can contain a shiny gold bag.
+[dictionaries, first use of recursion, was hard to get it, but it was simple when it wokred]
+Part 2:
+Count the number of bags.
+Created a similar recusive function that counts the number of bags.
+Takes a few seconds to solve
+[used dictionaries, recusion]
+
+Evaluation/Comments:
+Had to look inside each bag to see how others fit into it.
+Recursion was fun to use for the first time.
+
+
+--- Day 8: Handheld Halting ---
+Part 1:
+catch the first time the boot sequence loops back on itself.
+[first use of OOP: Instruction that has its name, position, and a "used before" flag, while loop]
+Part 2:
+Change one value in the input and see if the solution terminates without looping.
+[built the above into a for loop that can terminate early (if solution found)]
+solves in <1 second.
+
+Evaluation/Comments:
+Helped the kid next to me on the flight with his game console that was stuck in an infinite boot loop.
+This one was a lot of fun!
+
+
+--- Day 9: Encoding Error ---
+Part 1:
+Find numbers that match a rule based on the numbers before it.
+[Simple list + function, string splicing]
+Part 2:
+Add some min/max counters from the part 1.
+[Simple list + function]
+
+Evaluation/Comments:
+Hack into data port on the seat-back screen. Figure out encryption preamble.
+Pretty easy day here.
+
+
+--- Day 10: Adapter Array ---
+Part 1:
+Simple list and for loop to check the delta between adjacent adapters.
+[used python list sorting]
+Part 2:
+Solved with paper and pen... after I got my list of 1s and 3s.
+Something about how 1s can be omitted if not adjacent to a 3. or something like that.
+[exported a list of 1s and 3s, then solved by hand...]
+
+Evaluation/Comments:
+Need adapter chain to match the joltage of the power supply in the plane.
+I spent a long time trying to figure out part 2 with programming, but eventually ended up
+findig a pattern and doing it myself with pen and paper.
+So far, I'm still at a day-for-day pace, no slips yet.
+
+
+--- Day 11: Seating System ---
+Part 1:
+Iterate a 2D map with rules until the map stabilizes.
+[OOP for the seat map - but never used it, for loop that breaks when old map = new map]
+Part 2:
+Rules change a bit to look in directions, not just at the direct neighbors.
+Not super efficient, solves within a second or two though.
+[lots of while loops for each direction checking...]
+
+
+Evaluation/Comments:
+In the terminal, watching seats fill and disperse. Found the rules and modeled the behaviour.
+This was fun. I liked getting back into map interation and neighbor rules. It reminded me
+a bit of some of the 2019 puzzles.
+
+
+--- Day 12: Rain Risk ---
+Part 1:
+Navigate a ship based on commands.
+[instruction list + a lot of if-else statements]
+Part 2:
+Instructions actually were to move a waypoint
+[Only modified the above code a little bit]
+
+Evaluation/Comments:
+Ferry ride navigation to avoid a tropical storm.
+This one was also pretty fun and not too challenging.
+
+
+--- Day 13: Shuttle Search ---
+Part 1:
+Find the soonest bus that will pick you up minimal wait.
+[for loop tracking the quickest] - very easy
+Part 2:
+For the bus list, find the first time that the lis thas a patern where each consecutive
+bus arrives one minute after the next.
+[Figured out how to increase the step size once the next step was found]
+solves in <1 second.
+1 day slip (took two days for this puzzle)
+
+Evaluation/Comments:
+~Chinese Remainder Theorem~
+Part 2 of the bus schedule was super challenging. I checked online for a hint and
+saw the recommendation to use the C.R.T... and spent hours trying to figure it out.
+Went back to the basics and figured out how to increase the step size knowing that
+a certain interval worked for the prior busses in the list.
+
+
+--- Day 14: Docking Data ---
+Part 1:
+[list splicing and joining around mask data]
+Part 2:
+X's can now mean EITHER 1 or 0, and turns into combination/permutation problem
+Solves in a little over 1 second.
+[used binary digits to create a list of all permutations to solve through]
+
+Evaluation/Comments:
+bit masking encryption. Pretty fun one!
+Was able to catch up 1/2 a day on the 15th and do 15.1 too.
+
+
+--- Day 15: Rambunctious Recitation ---
+Part 1:
+All turns a list and used list slicing, and reading the list backwards looking for the
+other occurance of the number.
+[list slicing, and reading backwards]
+Part 2:
+To intreate to 30,000,000 turns... list manipulation was way to inefficient. Setup the turns
+in a dictionary where the number spoken is the key, and the value is the turn #.  This makes
+lookiup of the last occurance very easy.
+
+Evaluation/Comments:
+Turn and rule based game with elves. Take turns saying a number, if it's been said
+before say the number between the two occurances.
+Was able to catch up and complete both parts before the 16th.
+
+
+--- Day 16: Ticket Translation ---
+Part 1:
+[used a class instance for each rule and some for loops]
+Part 2:
+Decode your ticket to get some  values from it.
+[same as above + a while loop]
+
+Evaluation/Comments:
+Figure out the data from your ticket without knowing the field names, just based on other
+tickets that you can see around you.
+This one was OK. Not too hard, and also no super fun.  Good practice using OOP though.
+
+
+--- Day 17: Conway Cubes ---
+Part 1:
+Cell changes state based on the 26 neighbors around it.
+[Class instance for each cell, methods to get each one's next state and a method to set its
+next state. All cells are stored in a dictionary where its address is the key - as the map
+expands, the new cell instances are initialized.] - 0.29 seconds
+Part 2:
+[added the new dimension, but basically the same] - 18.5 seconds
+I got cought up with the extra 2 directions that I had to look to get the eighty neighbors.
+I actually set up a little script to help me make the list of 80 neighbors.
+
+Evaluation/Comments:
+This one was essentially the seating problem but in 3 dimensions. It was one of the last
+puzzles that I completed (on the 12th of January). It was a big one, and I had to pack for
+our family trip.
+Part 2 with the 4th dimension wasn't too challenging for me, as I just copied and pasted the
+directions to check and added a 'w' dimension to each location. My part 2 solution seems a
+little slow (I guess a lot of string splicing to get the neighbor addresses).
+
+
+--- Day 18: Operation Order ---
+Part 1:
+Ignore order of operation (but obey parentheses)
+[while loop to start solving from the inner-most parentheses, used eval] - <1s
+Part 2:
+Addition before multiplication (but obey parentheses)
+[could no longer use eval, but used a new solveMath function] - <1s
+
+
+Evaluation/Comments:
+Change the order of operation to simply read left to right, but still obey parentheses.
+I had a big challenge with this one as I tried to use recursion to solve sub-parenth when
+they show up in the parent one, but I was reading the input as a string, and could never
+figure out how to make it skip ahead the right number after it finished a parenth. There
+was some issue when it came to double nested ones. Just used a while loop instead of
+recursion.
+
+
+--- Day 19: Monster Messages ---
+Part 1:
+rules of rules that have _ + _ | _ + _, where _ references another rule (or eventually
+an A or B)
+[monster regex to check each input against] - 2.0 s
+Part 2:
+Now that there are loops...
+This one stumped me for a bit but it helped to talk with my programmer brother-in-law.
+I replaced rules in the input so that I added 3 loops and got the right answer.
+[not much change to the actual code] - 57.6 s
+
+Evaluation/Comments:
+Rule lists that reference other rule lists. Part 1 has no loops, part 2 does...
+Started this one on the 19th, but didn't get to part 2 until the 25th.
+I tried using recursion to setup the regex, but had a weird issue that i figured out
+after I setup the while loop version.
+slow... lots of string splicing
+
+
+--- Day 20: Jurassic Jigsaw ---
+Part 1:
+Find the 4 corner tiles of the big puzzle.
+I turned each border into hexidecimal where #s are 1 and .s are 0. Then read the hexi-
+decimal forward and backward, so each tile had 8 edges.  These edges are saved as
+properties of an instance for each tile. The 4 corner tiles are the tiles that each have
+4/8 edges have no neighboring sides.  That was an easy way to find the answer for part 1.
+[OOP, class instance for each puzzle piece] - <1s
+Part 2:
+Combine the tiles into one big map, remove the border pieces, then search for lochness
+monster patterns in the map where only the "#" pieces had to match the input pattern.
+This part turned monster.  Eventually I found the location of all tiles based on their
+shared edges, but it got tricky when trying to orient all of the pieces crrectly. The
+rotation and flipping worked but there was some issue in the re-assignment of the integer
+border to the new location. The main issue that I never corrected was that bottom was
+read left to right, which would need to be flipped after rotating the right edge down. In
+the end it was easier just to do an actual ckeck if the hashed borders matched (#..##).
+Once I finally had my map, I spliced windows of the map to check for monsters (with regex).
+That part was relatively easier, but one row of my splicing was shifted by one. That was a
+good 30 minutes at least of troubleshooting.
+[numpy, regex, manual corrections...] - 0.09s
+
+Evaluation/Comments:
+Take a bunch of tiles and arrange them to have matching borders (#s and .s). The tiles
+can be rotated or flipped into any orientation.  Then merge the tiles into a big map,
+remove the border tiles, and search to find the lochness monsters (the whole map would
+need to be rotated and flipped to find any monsters).
+Overall a very fun day, but MANY hours spent here. Part 1 was done in a day (26th),
+part 2 started on the 26th but took until mid-jan to complete.
+
+
+--- Day 21: Allergen Assessment ---
+Part 1:
+Count ingerdients that have no allergens. I made the list of allergen-to-ingerdient pair
+then went through the origionsl list to count. Went allergen at a time, removing it and
+its ingredient if it could be isolated.
+[lists, dictionaries, for loops, while loop] - 0.05s
+Part 2:
+I just had to alphabetize my answer list. The hard part was solved in part 1.
+[sam as part 1, but ised sorted() on the final dictionary] - 0.07s
+
+Evaluation/Comments:
+List of ingredients and then allergend=s. Find which ones are paired with which allergens.
+I thought the instructions were way more loose than they really were, so I avoided this one
+for a while too. I did it on Jan 6.
+Pretty fun once I actually understood it.
+
+
+--- Day 22: Crab Combat ---
+Part 1:
+Standard war card game modeling. Deck management, card placement.
+[simple while loop for the game, and each players hands were stored in a list.] - <1s
+Part 2:
+Game rules slightly modified to include recursive sub-games.
+Exported a few items into separate functions (namely the run-game one itself).
+Called the run-game function to handle the sub-games.
+[recursion, lots more functions] - ~1 sec
+
+Evaluation/Comments:
+Modeling a turn-based war card game that you're playing with a crab on a raft.
+Wokred on part one on Dec 29 and part 2 on Dec 30.
+Had a lot of fun with the recursion one of this day. I really enjoy game modeling.
+
+
+--- Day 23: Crab Cups ---
+Part 1:
+Simple string manipulation, popping and making new lists.  It was tricky to handle
+the looping at the end of the list, but I just kept cycling it one cup each turn.
+[list manipulation] - <1s
+Part 2:
+The number of cups and the number of turns becomes huge. 1 million cups, and 10 mil
+turns.  List manipulation is no longer realistic.
+[OOP, each cup is an instance holding it's position and pointers to the next cups
+essentially making this a (singly) linked list] - 58.5s
+still slow probably because still using a short little list to hold the most recent
+turns.
+
+Evaluation/Comments:
+Another crab game where cups are arranged in a circle, and you follow rules to show
+where to jump to the next cup and how to rearrange them.
+Pretty fun to do this one, and enjoyed using OOP.
+This is when I actually first started adding timers to my programs.  Worked on this
+puzzle on the 31st
+
+
+--- Day 24: Lobby Layout ---
+Part 1:
+Follow instructions on which tile to flip. I created tile class and each tile gets an
+instance. The object is stored in a dictionary where the key is an encoded address for
+the tile.  This tile then is permanently in memory in its white or black state. So if
+it is visited again, it turns to the other color.
+[OOP, bunch of elifs for each direction] - 0.006 s
+Part 2:
+Start with the map made in part 1 and iterate based on neighbors. Heavily used what I
+made for the conway cube (day 17) puzzle here.
+[just some extra functions made from day 1] - 3.9 s
+
+Evaluation/Comments:
+Flip tiles from white to black based on a set of rules. The tile map keeps expanding.
+Finished the conway cubes before this one, so it was almost just copy-paste from
+that one. Instead of 26 neighbors, each tile only had 6 neighbors.  Had to map out their
+positions using a grid, and decided to not do anything weird. X steps (-->) were by 2
+and y steps were steps of 1.  This helped make the hexagon layout.
+
+
+--- Day 25: Combo Breaker ---
+Part 1:
+Break the handshake between the key card and the door. Find the key shared between them.
+[while statment in a function] - ~1s
+Part 2:
+Just click a button to get this star :)
+I had to come back to this one after
+
+Evaluation/Comments:
+This was a little trickey to understand the puzzle input, but the code was quite simple
+once I understood it.  I worked on this one on Christmas day! It was nice and rewarding.
+Had to go back and complete the rest of the puzzles before getting the free part 2 star.

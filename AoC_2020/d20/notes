@@ -1,0 +1,17 @@
+#Python Regex
+#   \A(#....##....##....###)(.#..#..#..#..#..#)(#)\Z
+'''
+create one string consisting of the middle line
+followed by the lower line,
+followed by the top digit from the first line
+
+                  #   0+ 18
+#    ##    ##    ###  0-19
+ #  #  #  #  #  #     0-16
+
+
+#
+#.##.###.#.##.##.###
+##.###.####..#.##
+
+#.##.###.#.##.##.#####.###.####..#.###

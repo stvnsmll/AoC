@@ -1,0 +1,13 @@
+\A(a(ab|ba))\Z
+
+\A <-- start
+\Z <-- end
+
+\A(a(23
+
+
+
+\A((a)((ab)|(ba)))\Z
+
+
+\A((a)((aa|bb)(ab|ba)|(ab|ba)(aa|bb))(b))\Z

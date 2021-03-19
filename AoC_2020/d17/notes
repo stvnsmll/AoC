@@ -1,0 +1,18 @@
+ll Orientation
+
+ +------> (+)x
+ | .#.
+ | ..#
+ | ###
+ |
+ v (+)y
+
+
+ +z is towards screen
+ -z is away from screen
+
+ cell address coordinates are:
+ x^y^z
+ 
+ 
+ check cell y = 6, x = 4, z = 1 (3^1^1)
