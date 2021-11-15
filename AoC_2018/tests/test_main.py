@@ -1,79 +1,70 @@
 
 import unittest
+import importlib
 
 import sys
 sys.path.append("..")
-from test_support import get_solution, make_path
+from test_support import solve_with_test
 
 
 class TestBasic(unittest.TestCase):
     """ Test Cases to skip:
-            
+        
         def test_AoC2018_01_1_a(self):
-            from days.d01.AoC2018_01_1 import aoc2018_01_1
-            filename = make_path(1, 1, "a")#day, part, example
-            answer = aoc2018_01_1(filename)
-            solution = get_solution(1, 1, "a")
+            [year, day, part, example, solution_type] = [2018, 1, 1, "a", "int"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)
 
         def test_AoC2018_01_1_b(self):
-            from days.d01.AoC2018_01_1 import aoc2018_01_1
-            filename = make_path(1, 1, "b")#day, part, example
-            answer = aoc2018_01_1(filename)
-            solution = get_solution(1, 1, "b")
+            [year, day, part, example, solution_type] = [2018, 1, 1, "b", "int"]#works with int or string
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)
 
         def test_AoC2018_01_1_c(self):
-            from days.d01.AoC2018_01_1 import aoc2018_01_1
-            filename = make_path(1, 1, "c")#day, part, example
-            answer = aoc2018_01_1(filename)
-            solution = get_solution(1, 1, "c")
+            [year, day, part, example, solution_type] = [2018, 1, 1, "c", "int"]#works with int or string
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)
 
         def test_AoC2018_01_2_a(self):
-            from days.d01.AoC2018_01_2 import aoc2018_01_2
-            filename = make_path(1, 2, "a")#day, part, example
-            answer = aoc2018_01_2(filename)
-            solution = get_solution(1, 2, "a")
+            [year, day, part, example, solution_type] = [2018, 1, 2, "a", "int"]#works with int or string
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)
 
         def test_AoC2018_01_2_b(self):
-            from days.d01.AoC2018_01_2 import aoc2018_01_2
-            filename = make_path(1, 2, "b")#day, part, example
-            answer = aoc2018_01_2(filename)
-            solution = get_solution(1, 2, "b")
+            [year, day, part, example, solution_type] = [2018, 1, 2, "b", "int"]#works with int or string
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)
 
         def test_AoC2018_01_2_c(self):
-            from days.d01.AoC2018_01_2 import aoc2018_01_2
-            filename = make_path(1, 2, "c")#day, part, example
-            answer = aoc2018_01_2(filename)
-            solution = get_solution(1, 2, "c")
+            [year, day, part, example, solution_type] = [2018, 1, 2, "c", "int"]#works with int or string
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)
 
         def test_AoC2018_01_2_d(self):
-            from days.d01.AoC2018_01_2 import aoc2018_01_2
-            filename = make_path(1, 2, "d")#day, part, example
-            answer = aoc2018_01_2(filename)
-            solution = get_solution(1, 2, "d")
+            [year, day, part, example, solution_type] = [2018, 1, 2, "d", "int"]#works with int or string
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)    
+
+        def test_AoC2018_02_1_a(self):
+            [year, day, part, example, solution_type] = [2018, 2, 1, "a", "int"]#works with int or string
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
+        
+        def test_AoC2018_02_2_a(self):
+            [year, day, part, example, solution_type] = [2018, 2, 2, "a", "str"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
     """
 
-    def test_AoC2018_02_1_a(self):
-        from days.d02.AoC2018_02_1 import aoc2018_02_1
-        filename = make_path(2, 1, "a")#day, part, example
-        answer = aoc2018_02_1(filename)
-        solution = get_solution(2, 1, "a")
-        self.assertEqual(solution, answer)
-    
-    def test_AoC2018_02_2_a(self):
-        from days.d02.AoC2018_02_2 import aoc2018_02_2
-        filename = make_path(2, 2, "a")#day, part, example
-        answer = aoc2018_02_2(filename)
-        solution = get_solution(2, 2, "a", "str")#day, part, example, (optional, type = "string")
+    def test_AoC2018_03_1_a(self):
+        [year, day, part, example, solution_type] = [2018, 3, 1, "a", "int"]#works with int or str
+        [solution, answer] = solve_with_test(year, day, part, example, solution_type)
         self.assertEqual(solution, answer)
 
-
+    def test_AoC2018_03_2_a(self):
+        [year, day, part, example, solution_type] = [2018, 3, 2, "a", "int"]#works with int or str
+        [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+        self.assertEqual(solution, answer)
 
 if __name__ == '__main__':
     unittest.main()
