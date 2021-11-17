@@ -1,16 +1,14 @@
 # AoC 2018, Day 3
 
-'''
 Challenge Statement Summary:
-  - count how many times a string has a repeated (of 2 or 3) characters  (part 1)
-  - find the two strings that only differ by one character (part 2)
+  - count how many overlapping areas of fabric there are from all of the fabric requests  (part 1)
+  - find the only fabric request that has no overlaps (part 2)
 
-Still just using functional programming and some loops. No OOP yet.
-For part 2, I initially thought I'd create a new list, removing the one I checked each time,
-but I decided to just use list slicing to keep looking only forwards in the list.
+Starting to get fun. Used OOP to create a class for each fabric map. It made part 2 easy, because
+I could use a tracker parameter in the object to check if it was an overlap.
+This puzzle also is the first to get into the 2d map concept that is so common in AoC.
 
-The solution runs in 0.1 seconds, so there was no need to think too hard about data types and
-optimizations.
+The solution runs in 1.1 seconds, so I didn't try to optimize it much. I ended up looping through 
+each of the fabric maps twice for part 2.
 
-Day Rating: 5/10
-'''
+Day Rating: 6/10

@@ -10,7 +10,6 @@
 
 from datetime import datetime
 import numpy as np
-import re
 
 def aoc2018_03_2(filename):
     if __name__ != "__main__":
