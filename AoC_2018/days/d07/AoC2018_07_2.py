@@ -10,7 +10,7 @@
 
 from datetime import datetime
 
-worker_count = 4
+worker_count = 5
 minute_offset = 60
 
 def aoc2018_07_2(filename):
@@ -55,8 +55,8 @@ def aoc2018_07_2(filename):
             if beforeStep not in list_of_outputs:
                 list_of_outputs.append(beforeStep)
     
-    print(sorted(list_of_inputs))
-    print(sorted(list_of_outputs))
+    #print(sorted(list_of_inputs))
+    #print(sorted(list_of_outputs))
 
     exit = 0
     possible_starts = []
@@ -76,7 +76,7 @@ def aoc2018_07_2(filename):
                 ending_letter = letter
                 break
     
-    print(f"starging letters: {possible_starts}\nending letter: {ending_letter}")
+    #print(f"starging letters: {possible_starts}\nending letter: {ending_letter}")
 
     dict_of_letters[ending_letter] = AsmStep(f"     {ending_letter}")
 
@@ -89,10 +89,10 @@ def aoc2018_07_2(filename):
         #print()
 
     #print("\n\n\n\n\n")
-    for item in sorted(dict_of_letters):
-        dict_of_letters[item].printDeetz()
+    #for item in sorted(dict_of_letters):
+    #    dict_of_letters[item].printDeetz()
     
-    print(f"\nTotal Instruction Count = {len(list_of_inputs) + 1}")
+    #print(f"\nTotal Instruction Count = {len(list_of_inputs) + 1}")
 
     asm_order = []
     remaining_letters = list_of_inputs.copy()
@@ -105,7 +105,7 @@ def aoc2018_07_2(filename):
     #print(f"Initial assembly order: {asm_order}")
     available = possible_starts.copy()
     available.sort()
-    print(f"  Starting list of available: {available}\n\n")
+    #print(f"  Starting list of available: {available}\n\n")
     exit = 0
     while exit == 0:
         if len(available) == 0:
@@ -144,7 +144,7 @@ def aoc2018_07_2(filename):
         worker_name = "W" + str(i + 1)
         list_of_workers[worker_name] = Worker(worker_name)
 
-    print("\n****** STARTING THE TIME LOOP ******")
+    #print("\n****** STARTING THE TIME LOOP ******")
     while exit == 0:
         
         #check worker statuses
@@ -153,12 +153,13 @@ def aoc2018_07_2(filename):
         for worker in list_of_workers:
             status = list_of_workers[worker].checkStatus(time)
             if status == "available":
-                print(f"{worker} is {status}")
+                #print(f"{worker} is {status}")
                 available_workers.append(worker)
             elif status == "working":
-                print(f"{worker} is working on {list_of_workers[worker].activeStep}")
+                #print(f"{worker} is working on {list_of_workers[worker].activeStep}")
+                pass
             else:#status is a letter of a completed task
-                print(f"{worker} just finished step: {status}")
+                #print(f"{worker} just finished step: {status}")
                 available_workers.append(worker)
                 completed_steps.append(status)
                 #add all of the newly added "beforeSteps" if their prerequesites are in the
@@ -167,10 +168,10 @@ def aoc2018_07_2(filename):
                     #print(f"  {next_step} has prerequesites: {dict_of_letters[next_step].prerequesites}")
                     waiting_prerex.append(next_step)
                 waiting_prerex = removeDuplicatesInList(waiting_prerex)
-                print(f"Steps awaiting prerequesites: {waiting_prerex}")
+                #print(f"Steps awaiting prerequesites: {waiting_prerex}")
                 remove_from_prerex = []
                 for step in waiting_prerex:
-                    print(f"checking step letter: {step}")
+                    #print(f"checking step letter: {step}")
                     add_yes = True
                     for prereq in dict_of_letters[step].prerequesites:
                         if prereq not in completed_steps:
@@ -183,20 +184,20 @@ def aoc2018_07_2(filename):
                 available_steps = removeDuplicatesInList(available_steps)
                 
         #show the log for this loop
-        print(f"\nStarting new loop at time: {time}")
-        print(f"  available steps to work: {available_steps}")
-        print(f"  completed steps: {completed_steps}")
-        print(f"  list of waiting prerequesites: {waiting_prerex}")
+        #print(f"\nStarting new loop at time: {time}")
+        #print(f"  available steps to work: {available_steps}")
+        #print(f"  completed steps: {completed_steps}")
+        #print(f"  list of waiting prerequesites: {waiting_prerex}")
 
         #assign all available workers to any steps that are ready to be worked
         for ready_worker in available_workers:
             if len(available_steps) != 0:
                 step_to_start = available_steps[0]
                 available_steps.pop(0)
-                print(f"  Worker: {ready_worker} starts step: {step_to_start}")
+                #print(f"  Worker: {ready_worker} starts step: {step_to_start}")
                 list_of_workers[ready_worker].startWorking(step_to_start, time)
             else:
-                print(f"     no more steps for worker {ready_worker} to work on...")
+                #print(f"     no more steps for worker {ready_worker} to work on...")
                 break
 
         #reset the list of available workers:
@@ -205,8 +206,8 @@ def aoc2018_07_2(filename):
         if len(completed_steps) == (len(list_of_inputs) + 1):
             exit = 1
         time += 1
-        print()
-        if time > 14000:
+        #print()
+        if time > 4000000:
             print("\n\n\nError! Loop timeout\n\n\n")
             exit = 1
         
