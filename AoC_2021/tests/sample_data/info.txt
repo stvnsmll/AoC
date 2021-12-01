@@ -1,0 +1,10 @@
+This folder stores the sample data provided by AoC for each day.
+
+The folder name starts with "sd_" for "sample data"
+
+The folders each conatin a separate file for each sample input for each part of the day, so when a test runs, it can run for each file in each day.
+Some AoC days have just one sample input, other have three.
+
+For each sample data file, there is a file with the same name with "_solution" appended to the end of the file name.
+This is the file that the tests will look in for the solution to the sample inputs.
+

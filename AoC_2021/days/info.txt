@@ -1,0 +1,29 @@
+
+
+Outline of Structure:
+    ~/days                          # Top level directory
+        |-- info.txt                # (this file) General info about the structure and contents
+        |__ /d01
+            |-- AoC2021_01_1.py     # Exapmle of how day 1 of 2018 would be structured
+            |-- AoC2021_01_2.py
+            |-- input.txt 
+            |-- README.md   
+        |__ /dXX
+            |-- AoC20XX_dd_1.py     # XX = the year, dd = the day, the last number is the part (1 or 2)
+            |-- AoC20XX_dd_2.py
+            |-- input.txt           # the full puzzle input to the problem provided by AoC
+        ...
+
+
+Each day has its own folder.
+
+Inside each day folder, there are the following:
+   - a puzzle input file, 
+   - the solution .py codes (for the 2 parts),
+   - a README.md file for the post-solution discussion that discusses:
+        - the challenge statement
+        - what was fun
+        - what was hard
+        - what skills were used (data types, programming approaches, etc)
+        - how long it took me to solve it ()
+        - puzzle ranking (1-10) of how much I enjoyed it
