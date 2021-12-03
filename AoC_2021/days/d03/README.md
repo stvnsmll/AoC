@@ -1,21 +1,16 @@
 # AoC 2021, Day 3
 
 Challenge Statement Summary:
-  - summary (part 1)
-  - summary (part 2)
+  - count digits in their locations in binary numbers (part 1)
+  - do more of the above but more processing of it (part 2)
 
-fun/hard/skills*/time to solve/optimized/etc...
+Part 2 ran pretty quick (0.01 seconds), but the code could probably have been reduced
+and made more simple with helper functions and some while loops instead of for loops.
+Honestly the amount of tricky reading and understanding to figure out what part 2 was
+trying to describe made it take a while for how simple it actually was.
 
-Day Rating: X/10
-  (optional justification)
+I usually like working with the binary numbers, but this seemed a little tedious.
+Working with the binarys was really just string manipulation.
 
-
-
-~~~~~~~~ DELELTE BELOW HERE ~~~~~~~~
-Include the following:
-  - the challenge statement
-  - what was fun
-  - what was hard
-  - what skills were used *(data types, programming approaches, etc)
-  - how long it took me to solve it ()
-  - puzzle ranking (1-10) of how much I enjoyed it
+Day Rating: 2/10
+  (seemed like too much reading for too simple of a problem)
