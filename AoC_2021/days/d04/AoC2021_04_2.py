@@ -5,15 +5,15 @@
 # stvnsmll              #
 # 04.12.21              #
 #                       #
-# Day 04, Part 1        #
+# Day 04, Part 2        #
 #########################
 
 from datetime import datetime
 
 
-def aoc2021_04_1(filename):
+def aoc2021_04_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 04, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 04, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -53,23 +53,28 @@ def aoc2021_04_1(filename):
 
     exit = 0
     rounds = 0
+    winning_boards = []
     for number in bingo_commands:
         rounds += 1
         for board in bingo_board:
             bingo_board[board].check_for_value(number)
-            result = bingo_board[board].check_for_win()
-            if result != "no win":
-                print(f"Winning Board: {result}")
-                print(f"Last number: {number}")
-                bingo_board[result].printBoard("number")
-                print()
-                bingo_board[result].printBoard("score")
-                board_score = bingo_board[result].getFinalScore()
-                answer = number * board_score
-                exit = 1
-                break
+            if board not in winning_boards:
+                result = bingo_board[board].check_for_win()
+                if result != "no win":
+                    winning_boards.append(result)
+                    #print(f"Winning Board: {result}")
+                    #print(f"Last number: {number}")
+                    #bingo_board[result].printBoard("number")
+                    #print()
+                    #bingo_board[result].printBoard("score")
+                    board_score = bingo_board[result].getFinalScore()
+                    answer = number * board_score
+                    #exit = 1
+                    #break
         if exit == 1:
-            break
+            pass#break
+    
+    print(winning_boards)
 
     print(rounds)
     #answer = 0
@@ -139,4 +144,4 @@ class BingoBoard():
             print()
 
 if __name__ == "__main__":
-   aoc2021_04_1("input.txt")
+   aoc2021_04_2("input.txt")
