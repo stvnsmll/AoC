@@ -1,4 +1,4 @@
-# AoC 2021, Day X
+# AoC 2021, Day 6
 
 Challenge Statement Summary:
   - summary (part 1)

@@ -5,16 +5,16 @@
 # stvnsmll              #
 # 05.12.21              #
 #                       #
-# Day 05, Part 1        #
+# Day 05, Part 2        #
 #########################
 
 from datetime import datetime
 import numpy as np
 
 
-def aoc2021_05_1(filename):
+def aoc2021_05_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 5, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 5, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -42,9 +42,12 @@ def aoc2021_05_1(filename):
     max_map_x = 0
     max_map_y = 0
     simple_lines = []
+    diag_lines = []
     for instr in all_lines:
         if (instr[0] == instr[2]) or (instr[1] == instr[3]):
             simple_lines += [instr]
+        else:
+            diag_lines += [instr]
         if instr[0] > max_map_x:
             max_map_x = instr[0]
         if instr[2] > max_map_x:
@@ -78,7 +81,69 @@ def aoc2021_05_1(filename):
                 coverage_map[instr[1]][minline + i] += 1
         #print(coverage_map)
 
-    print(coverage_map)
+    #print(coverage_map)
+
+    #now do diagonal lines
+    for instr in diag_lines:
+        #each line is formatted: [x1, y1, x2, y2]
+        #place the starting and ending points:
+        coverage_map[instr[1]][instr[0]] += 1
+        coverage_map[instr[3]][instr[2]] += 1
+        #get the direction (increasing = 1, decreasing = 2)
+        x_dir = 1
+        y_dir = 1
+        exit = 0
+        if instr[0] > instr[2]:
+            x_dir = 2
+        if instr[1] > instr[3]:
+            y_dir = 2
+        if x_dir == 1 and y_dir == 1:
+            #x and y are increasing
+            increment = 1
+            while exit == 0:
+                new_coord = [(instr[0] + increment), (instr[1] + increment)]
+                if new_coord == [instr[2], instr[3]]:
+                    exit = 1
+                else:
+                    coverage_map[new_coord[1]][new_coord[0]] += 1
+                increment += 1
+        if x_dir == 1 and y_dir == 2:
+            #x is increasing, y is decreasing
+            increment_x = 1
+            increment_y = -1
+            while exit == 0:
+                new_coord = [(instr[0] + increment_x), (instr[1] + increment_y)]
+                if new_coord == [instr[2], instr[3]]:
+                    exit = 1
+                else:
+                    coverage_map[new_coord[1]][new_coord[0]] += 1
+                increment_x += 1
+                increment_y -= 1
+        if x_dir == 2 and y_dir == 1:
+            #x is decreasing, y is increasing
+            increment_x = -1
+            increment_y = 1
+            while exit == 0:
+                new_coord = [(instr[0] + increment_x), (instr[1] + increment_y)]
+                if new_coord == [instr[2], instr[3]]:
+                    exit = 1
+                else:
+                    coverage_map[new_coord[1]][new_coord[0]] += 1
+                increment_x -= 1
+                increment_y += 1
+        if x_dir == 2 and y_dir == 2:
+            #x and y are decreasing
+                        #x and y are increasing
+            increment = -1
+            while exit == 0:
+                new_coord = [(instr[0] + increment), (instr[1] + increment)]
+                if new_coord == [instr[2], instr[3]]:
+                    exit = 1
+                else:
+                    coverage_map[new_coord[1]][new_coord[0]] += 1
+                increment -= 1
+
+    #print(coverage_map)
 
     overlap_count = 0
     for row in coverage_map:
@@ -97,4 +162,4 @@ def aoc2021_05_1(filename):
 
 
 if __name__ == "__main__":
-   aoc2021_05_1("input.txt")
+   aoc2021_05_2("input.txt")
