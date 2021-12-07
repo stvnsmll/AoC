@@ -5,15 +5,15 @@
 # stvnsmll              #
 # 06.12.21              #
 #                       #
-# Day 06, Part 1        #
+# Day 06, Part 2        #
 #########################
 
 from datetime import datetime
 
 
-def aoc2021_06_1(filename):
+def aoc2021_06_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 6, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 6, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -35,30 +35,37 @@ def aoc2021_06_1(filename):
     starting_lfish = [int(x) for x in input_data[0].split(",")]
     print(starting_lfish)
 
-    list_of_lfish = []
-    counter = 0
+    #store fish by their age-to-spawn in a dictionary
+    lfish_dict = {}
+    for i in range(9):
+        lfish_dict[i] = 0
+    print(lfish_dict)
+
     for lfish in starting_lfish:
-        list_of_lfish.append(LanternFish(counter, lfish))
-        counter += 1
+        lfish_dict[lfish] += 1
+    print(lfish_dict)
+    original_lfish_dict = lfish_dict
 
-    print("\nStarting List: ", end="")
-    printFishList(list_of_lfish)
-
-    days_to_run = 80
+    days_to_run = 256
 
     for i in range(days_to_run):
-        #print(f"Running Day {i}")
-        for lfish_no in range(len(list_of_lfish)):
-            end_action = list_of_lfish[lfish_no].progressAge()
-            if end_action == "spawn":
-                list_of_lfish.append(LanternFish(len(list_of_lfish)))
-        #print(f"\n after {i} days: ", end="")
-        #printFishList(list_of_lfish)
-    
-    #print(f"\n after {days_to_run} days: ", end="")
-    #printFishList(list_of_lfish)
+        tmp_dict = {}
+        for lfish_age in range(8,-1,-1):
+            if lfish_age == 0:
+                #this is the last one, it spawns new ones (at 8) and sets current ones to 6
+                no_to_spawn = lfish_dict[0]
+                tmp_dict[6] += no_to_spawn
+                tmp_dict[8] = no_to_spawn
+            else:
+                tmp_dict[lfish_age - 1] = lfish_dict[lfish_age]
+        #print(f"After day {i + 1}", end=" ---> ")
+        #print(tmp_dict)
+        lfish_dict = tmp_dict
 
-    final_lFish_count = len(list_of_lfish)
+    final_lFish_count = 0
+    for lfish_age in lfish_dict:
+        final_lFish_count += lfish_dict[lfish_age]
+
     print(f"Lantern fish count after {days_to_run} of spawning: {final_lFish_count}\n")
 
     answer = final_lFish_count
@@ -92,4 +99,4 @@ def printFishList(lof):
 
 
 if __name__ == "__main__":
-   aoc2021_06_1("input.txt")
+   aoc2021_06_2("input.txt")
