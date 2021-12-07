@@ -9,6 +9,7 @@
 #########################
 
 from datetime import datetime
+import statistics
 
 
 def aoc2021_07_1(filename):
@@ -30,15 +31,35 @@ def aoc2021_07_1(filename):
         input_data.append(line.strip())
     input_data_file.close()
 
-    print(input_data)
+    #print(input_data)
+
+    positions = [int(x) for x in input_data[0].split(",")]
+    #print(positions)
+
+    #find the median:
+    median = int(statistics.median(positions))
+    check_range = 3
+    check_step = 1
+    fuel_check_dict = {}
+    for fuel_check in range((median - check_range),(median + check_range + 1), check_step):
+        fuel_check_dict[fuel_check] = fuel_for_all(fuel_check, positions)
     
-    answer = 0
+    for i in fuel_check_dict:
+        print(f"{i}: {fuel_check_dict[i]}")
+    
+    
+    answer = fuel_for_all(median, positions)
         
     print(f"\nSolution: {answer}")
     
     print(f"Runtime Duration: {(datetime.now() - startTime)}\n")
     return answer
 
+def fuel_for_all(target, positions):
+    fuel_spent = 0
+    for crab in positions:
+        fuel_spent += abs(crab - target)
+    return fuel_spent
 
 
 if __name__ == "__main__":
