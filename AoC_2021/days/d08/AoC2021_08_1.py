@@ -30,9 +30,28 @@ def aoc2021_08_1(filename):
         input_data.append(line.strip())
     input_data_file.close()
 
-    print(input_data)
+    #print(input_data)
+    signals = {}#[signal number][0=signal paterns, 1=output values][value for each]
+    stepper = 0
+    for line in input_data:
+        parts = line.split(" | ")
+        signals[stepper] = parts[0].split(" "), parts[1].split(" ")
+        stepper += 1
     
-    answer = 0
+    #for i in signals:
+    #    print(signals[i])
+    
+    #print("\n\n")
+
+    print("check digits in output value")
+    lenght_valid = [2, 3, 4, 7]
+    valid_digit_count = 0
+    for signal in signals:
+        for output in signals[signal][1]:
+            if len(output) in lenght_valid:
+                valid_digit_count += 1
+
+    answer = valid_digit_count
         
     print(f"\nSolution: {answer}")
     
