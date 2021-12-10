@@ -5,15 +5,15 @@
 # stvnsmll              #
 # 10.12.21              #
 #                       #
-# Day 10, Part 1        #
+# Day 10, Part 2        #
 #########################
 
 from datetime import datetime
 
 
-def aoc2021_10_1(filename):
+def aoc2021_10_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 10, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 10, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -46,7 +46,9 @@ def aoc2021_10_1(filename):
     incomplete_lines = []
     corrupted_lines = []
     error_symbols = []
+    finishing_list = []
     for line in input_data:
+        error_found = 0
         opens_li = []
         for symbol in line:
             #print(symbol, end="")
@@ -60,18 +62,24 @@ def aoc2021_10_1(filename):
                 else:
                     corrupted_lines.append(line)
                     error_symbols.append(symbol)
+                    error_found = 1
                     break
             #print("", end=" ")
         if len(opens_li) != 0:
-            incomplete_lines.append(line)
-            
+            if error_found == 0:
+                incomplete_lines.append(line)
+                #print(line)
+                #print(opens_li[::-1])
+                finishing_list.append(opens_li[::-1])
         #print()
         #print(opens_li)
         #print(f"Error Symbols: {error_symbols}")
         #print()
 
+        #}}]])})]
+
     #print("\n\n\n")
-    print(f"Error Symbols: {error_symbols}")
+    #print(f"Error Symbols: {error_symbols}")
     symbol_values = {}
     symbol_values[")"] = 3
     symbol_values["]"] = 57
@@ -81,8 +89,29 @@ def aoc2021_10_1(filename):
     final_value = 0
     for sym in error_symbols:
         final_value += symbol_values[sym]
+
+    autocomplete_pts = {}
+    autocomplete_pts["("] = 1
+    autocomplete_pts["["] = 2
+    autocomplete_pts["{"] = 3
+    autocomplete_pts["<"] = 4
+
+    all_total_scores = []
+    for line in finishing_list:
+        total_score = 0
+        for sym in line:
+            total_score *= 5
+            total_score += autocomplete_pts[sym]
+        #print(total_score)
+        #print(f"{line} --> Score: {total_score}")
+        all_total_scores.append(total_score)
     
-    answer = final_value
+    all_total_scores.sort()
+    #print(all_total_scores)
+    mid_point = int(len(all_total_scores) / 2)
+    #print(mid_point)
+    answer = all_total_scores[mid_point]
+
         
     print(f"\nSolution: {answer}")
     
@@ -92,4 +121,4 @@ def aoc2021_10_1(filename):
 
 
 if __name__ == "__main__":
-   aoc2021_10_1("input.txt")
+   aoc2021_10_2("input.txt")
