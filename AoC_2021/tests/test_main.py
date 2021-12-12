@@ -114,10 +114,16 @@ class TestBasic(unittest.TestCase):
             [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)
 
+        def test_AoC2021_11_1_a(self):
+            [year, day, part, example, solution_type] = [2021, 11, 1, "a", "int"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
+
     """
+
     
-    def test_AoC2021_11_1_a(self):
-        [year, day, part, example, solution_type] = [2021, 11, 1, "a", "int"]#works with int or str
+    def test_AoC2021_11_2_a(self):
+        [year, day, part, example, solution_type] = [2021, 11, 2, "a", "int"]#works with int or str
         [solution, answer] = solve_with_test(year, day, part, example, solution_type)
         self.assertEqual(solution, answer)
 

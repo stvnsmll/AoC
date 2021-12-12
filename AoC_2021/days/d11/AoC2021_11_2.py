@@ -3,9 +3,9 @@
 #########################
 # Steven Small          #
 # stvnsmll              #
-# 11.12.21              #
+# 12.12.21              #
 #                       #
-# Day 11, Part 1        #
+# Day 11, Part 2        #
 #########################
 
 from datetime import datetime
@@ -13,9 +13,9 @@ import numpy as np
 
 tmp_map = np.zeros((12, 12), int)
 
-def aoc2021_11_1(filename):
+def aoc2021_11_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 11, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 11, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -53,9 +53,10 @@ def aoc2021_11_1(filename):
     #this one just to get things started...
     tmp_map = starting_map
 
+    answer = 0
 
     total_flashes = 0
-    number_of_steps = 100
+    number_of_steps = 3000
     for i in range(number_of_steps):
         #then... starting the real loop:
         #tmp_map = starting_map
@@ -110,16 +111,22 @@ def aoc2021_11_1(filename):
         if flash_count != flash_count_2:
             print("ERROR FOUND -- flash count not matching")
             return 6
-        print(f"AFTER STEP {i + 1}: ({flash_count} flashes)")
+        
         #if i < 19:
         #    print(tmp_map, end="\n\n")
-        #if (i + 1)%10 == 0:
-        print(tmp_map, end="\n\n")
+        if (i + 1)%10 == 0:
+            #print(tmp_map, end="\n\n")
+            print(f"AFTER STEP {i + 1}: ({flash_count} flashes)")
         total_flashes += flash_count
+        if flash_count == 100:
+            print("found it")
+            answer = (i + 1)
+            print(f"AFTER STEP {i + 1}: ({flash_count} flashes)")
+            break
         
+    if answer == 0:
+        print(f"NOT ENOUGH CYCLES, no common flash found within {number_of_steps} cycles.")
     
-
-    answer = total_flashes
         
     print(f"\nSolution: {answer}")
     
@@ -161,4 +168,4 @@ def increment_neighbors(row, col):#returns 1 if the flashing continues, 0 if no 
 
 
 if __name__ == "__main__":
-   aoc2021_11_1("input.txt")
+   aoc2021_11_2("input.txt")
