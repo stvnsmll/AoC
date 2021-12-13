@@ -123,15 +123,43 @@ class TestBasic(unittest.TestCase):
             [year, day, part, example, solution_type] = [2021, 11, 2, "a", "int"]#works with int or str
             [solution, answer] = solve_with_test(year, day, part, example, solution_type)
             self.assertEqual(solution, answer)
-
-    """
-
+        
+        def test_AoC2021_12_1_a(self):
+            [year, day, part, example, solution_type] = [2021, 12, 1, "a", "int"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
+            
+        def test_AoC2021_12_1_b(self):
+            [year, day, part, example, solution_type] = [2021, 12, 1, "b", "int"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
+        
+        def test_AoC2021_12_1_c(self):
+            [year, day, part, example, solution_type] = [2021, 12, 1, "c", "int"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
+        
+        def test_AoC2021_12_2_a(self):
+            [year, day, part, example, solution_type] = [2021, 12, 2, "a", "int"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
+        
+        def test_AoC2021_12_2_b(self):
+            [year, day, part, example, solution_type] = [2021, 12, 2, "b", "int"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
+        
+        def test_AoC2021_12_2_c(self):
+            [year, day, part, example, solution_type] = [2021, 12, 2, "c", "int"]#works with int or str
+            [solution, answer] = solve_with_test(year, day, part, example, solution_type)
+            self.assertEqual(solution, answer)
     
-    def test_AoC2021_12_1_a(self):
-        [year, day, part, example, solution_type] = [2021, 12, 1, "a", "int"]#works with int or str
+    """
+    
+    def test_AoC2021_13_1_a(self):
+        [year, day, part, example, solution_type] = [2021, 13, 1, "a", "int"]#works with int or str
         [solution, answer] = solve_with_test(year, day, part, example, solution_type)
         self.assertEqual(solution, answer)
-
 
 if __name__ == '__main__':
     unittest.main()

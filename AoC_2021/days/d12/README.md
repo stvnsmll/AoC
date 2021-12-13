@@ -1,21 +1,16 @@
 # AoC 2021, Day 12
 
 Challenge Statement Summary:
-  - summary (part 1)
-  - summary (part 2)
+  - Find all of the possible paths through the caves (part 1) [0.04 s]
+  - Rules allow for one small cave to be passed through twice (part 2) [~30 minutes!!]
 
-fun/hard/skills*/time to solve/optimized/etc...
+Wow, so part 2 could be optimized. I also struggled in part 1 with the recursion. The completed path string kept getting
+appended to instead of a new one starting where the recursion left off. I eventually got it, but it was a bit of 
+troubleshooting. Part 2 had some other issues with it like "end" not being the last one that got tested. I'm not sure how
+I could get it to solve faster. Maybe fewer lists and more sets or dictionaries. I didn't solve this one until the end of 
+the 13th, so it actually took quite a while.
 
-Day Rating: X/10
-  (optional justification)
+I think it would run faster if I modified the code to check for the double occurance of ONE small cave before checking 
+at the very end. But the recursion was still taking a while.
 
-
-
-~~~~~~~~ DELELTE BELOW HERE ~~~~~~~~
-Include the following:
-  - the challenge statement
-  - what was fun
-  - what was hard
-  - what skills were used *(data types, programming approaches, etc)
-  - how long it took me to solve it ()
-  - puzzle ranking (1-10) of how much I enjoyed it
+Day Rating: 5/10

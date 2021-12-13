@@ -3,9 +3,9 @@
 #########################
 # Steven Small          #
 # stvnsmll              #
-# 12.12.21              #
+# 13.12.21              #
 #                       #
-# Day 12, Part 1        #
+# Day 12, Part 2        #
 #########################
 
 from datetime import datetime
@@ -13,9 +13,9 @@ from datetime import datetime
 valid_paths = []
 cave_dict = {}
 
-def aoc2021_12_1(filename):
+def aoc2021_12_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 12, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 12, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -61,8 +61,8 @@ def aoc2021_12_1(filename):
             for cave in cave_dict:
                 cave_dict[cave].add_connection(i)
     
-    #printCaves(cave_dict, "conn")
-    #print(f"Starting cave list: {starting_caves}")
+    printCaves(cave_dict, "conn")
+    print(f"Starting cave list: {starting_caves}")
 
     #print(cave_dict["A"].conn)
 
@@ -74,17 +74,52 @@ def aoc2021_12_1(filename):
     print("\n\nStarting Recursion:\n")
     pick_route2(visited_caves, next_cave_list)
     
-    print("\n\nnumber of final list of valid paths:")
-    print(len(valid_paths))
+    #print("\n\nList of possible paths (not final):")
+    #logger = 0
+    #for path in valid_paths:
+    #    logger += 1
+    #    print(f"{logger:02d}: {path}")
+    #print()
+    #print(len(valid_paths))
 
-    
-    answer = len(valid_paths)
+    print("still need to eliminate paths that have more than one double lowercase letter\n")
+    #['start', 'A', 'b', 'A', 'b', 'A', 'c', 'A', 'c', 'A', 'end'] --fail
+    #['start', 'A', 'b', 'A', 'b', 'end'] --pass
+    #check = check_valid_rule(['start', 'A', 'b', 'A', 'b', 'end'])
+    #print(check)
+    count_valid = 0
+    actual_valid = []
+    for path in valid_paths:
+        spath = path.split(",")
+        check = check_valid_rule(spath)
+        if check == 1:
+            count_valid += 1
+            actual_valid.append(path)
+        #print(spath)
+
+    answer = count_valid
         
     print(f"\nSolution: {answer}")
     
     print(f"Runtime Duration: {(datetime.now() - startTime)}\n")
     return answer
 
+def check_valid_rule(path):#return 1 if valid, 0 if invalid
+    lower_counts = {}
+    for i in path:
+        if i.islower():
+            if i in lower_counts:
+                lower_counts[i] += 1
+            else:
+                lower_counts[i] = 1
+    counts_above_1 = 0
+    for cave in lower_counts:
+        if lower_counts[cave] > 1:
+            counts_above_1 += 1
+    #print(counts_above_1)
+    if counts_above_1 < 2:
+        return 1
+    return 0
 
 def pick_route2(visited_cv, next_cv):
     global valid_paths
@@ -92,14 +127,20 @@ def pick_route2(visited_cv, next_cv):
     #remove impossible next_caves
     ok_next_cv = []
     for cave in next_cv:
-        if cave.islower() and cave in visited_cv:
+        if cave == "end" and cave in visited_cv:
+            #do not add it to ok list of caves
+            pass
+        elif cave.islower() and visited_cv.count(cave) > 1:
             #do not add it to ok list of caves
             pass
         else:
             ok_next_cv.append(cave)
+    
+    ok_next_cv.sort()
     #move "end" to the end... just because
     if "end" in ok_next_cv:
         ok_next_cv.append(ok_next_cv.pop(ok_next_cv.index("end")))
+    
     #print(f"   List of OK caves: {ok_next_cv}")
     for ok_cave in ok_next_cv:
         #print(f"   Looping through {ok_next_cv}, working on {ok_cave} now.")
@@ -183,4 +224,4 @@ def printCaves(cavelist, type='name'):
 
 
 if __name__ == "__main__":
-   aoc2021_12_1("input.txt")
+   aoc2021_12_2("input.txt")
