@@ -1,21 +1,12 @@
 # AoC 2021, Day 13
 
 Challenge Statement Summary:
-  - summary (part 1)
-  - summary (part 2)
+  - count the number of dots left after the first fold (part 1) [0.17 s]
+  - complete all of the folds on a transparent paper and read the letters (part 2) [0.1 s]
 
-fun/hard/skills*/time to solve/optimized/etc...
+This was a fun one and pretty easy. Overall it took me an hour or so to solve. No special programming
+skills. Just some loops and such. I like reading out ASCII-type art to find a solution, but it made
+the test script not quite accurate in confirming the result. No need to optimize - they both solved
+pretty quickly. Probably most of this time was even just in the printing.
 
-Day Rating: X/10
-  (optional justification)
-
-
-
-~~~~~~~~ DELELTE BELOW HERE ~~~~~~~~
-Include the following:
-  - the challenge statement
-  - what was fun
-  - what was hard
-  - what skills were used *(data types, programming approaches, etc)
-  - how long it took me to solve it ()
-  - puzzle ranking (1-10) of how much I enjoyed it
+Day Rating: 9/10
