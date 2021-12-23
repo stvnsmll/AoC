@@ -1,10 +1,11 @@
-# AoC 2021, Day 14
+# AoC 2021, Day 15
 
 Challenge Statement Summary:
-  - Polymer list and insertions (part 1) [0.02 s]
-  - summary (part 2)
+  - Find the least costly path through a maze (part 1) [0.06 s]
+  - maze gets 5x larger (part 2) guessed 2789, too high
 
 fun/hard/skills*/time to solve/optimized/etc...
+Part 2 was fun to use the remainder % thing
 
 Day Rating: X/10
   (optional justification)

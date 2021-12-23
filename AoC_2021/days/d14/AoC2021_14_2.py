@@ -5,15 +5,15 @@
 # stvnsmll              #
 # 22.12.21              #
 #                       #
-# Day 14, Part 1        #
+# Day 14, Part 2        #
 #########################
 
 from datetime import datetime
 
 
-def aoc2021_14_1(filename):
+def aoc2021_14_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 14, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 14, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -36,19 +36,22 @@ def aoc2021_14_1(filename):
     print(f"\nPolymer Template: {polymer_template}\n")
     insertion_rules = {}
     for rule in insertion_rules_list:
-        insertion_rules[rule[0]] = rule[1]
+        print(str(list(rule[0])))
+        insertion_rules[str(list(rule[0]))] = rule[1]
     print("Rules:")
     for rule in insertion_rules:
         print(f"  {rule} makes -> {insertion_rules[rule]}")
     
     print()
     polymer = list(polymer_template)
+    polymer = ['N', 'N']
     print(polymer_template)
     #polymer loop
-    for loop in range(10):
+    for loop in range(3):
         new_polymer = [polymer[0]]
         for i in range(len(polymer) - 1):
-            pair = "".join(polymer[i:i + 2])
+            pair = str(polymer[i:i + 2])
+            print(pair)
             new_char = insertion_rules[pair]
             #print(pair)
             #print(new_char)
@@ -83,4 +86,4 @@ def aoc2021_14_1(filename):
 
 
 if __name__ == "__main__":
-   aoc2021_14_1("input.txt")
+   aoc2021_14_2("input.txt")
