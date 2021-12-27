@@ -36,43 +36,68 @@ def aoc2021_14_2(filename):
     print(f"\nPolymer Template: {polymer_template}\n")
     insertion_rules = {}
     for rule in insertion_rules_list:
-        print(str(list(rule[0])))
-        insertion_rules[str(list(rule[0]))] = rule[1]
+        insertion_rules[rule[0]] = [(rule[0][0] + rule[1]), (rule[1] + rule[0][1])]
     print("Rules:")
     for rule in insertion_rules:
         print(f"  {rule} makes -> {insertion_rules[rule]}")
     
-    print()
-    polymer = list(polymer_template)
-    polymer = ['N', 'N']
-    print(polymer_template)
-    #polymer loop
-    for loop in range(3):
-        new_polymer = [polymer[0]]
-        for i in range(len(polymer) - 1):
-            pair = str(polymer[i:i + 2])
-            print(pair)
-            new_char = insertion_rules[pair]
-            #print(pair)
-            #print(new_char)
-            new_polymer += [new_char, polymer[i + 1]]
-            #print(new_polymer)
-            #print()
-        polymer = new_polymer.copy()
-        #print("".join(new_polymer))
-
-    print()
-    print(len(polymer))
-
     full_list = []
     for rule in insertion_rules:
         full_list += list(rule)
     type_dict = dict.fromkeys(full_list)
     for pType in type_dict:
         type_dict[pType] = 0
-    for element in polymer:
+    for element in polymer_template:
         type_dict[element] += 1
+    print("\nDictionary of element types:")
     print(type_dict)
+
+    print()
+    polymer = polymer_template
+    final_string = ""
+    #polymer = "NN"
+    print(f"Input polymer template: {polymer_template}\n")
+    #polymer loop
+    rule_count = {}
+    for i in insertion_rules:
+        rule_count[i] = 0
+    print("Blank Rule Count:")
+    print(rule_count)
+
+    loop_depth = 40
+    print(polymer)
+    polymer_list = []
+    for i in range(len(polymer_template) - 1):
+        polymer_list.append(polymer_template[i:i + 2])
+        rule_count[polymer_template[i:i + 2]] += 1
+    print(rule_count)
+    for _ in range(loop_depth):
+        new_rules = rule_count.copy()
+        for polymer, count in list(rule_count.items()):
+            if count > 0:
+                #print(f"Polymer: {polymer} ==> {count}")
+                children = insertion_rules[polymer]
+                type_dict[children[0][1]] += count
+                #print(f"  children: {children}, counting up letter {children[0][1]}")
+                new_rules[children[0]] += count
+                new_rules[children[1]] += count
+                new_rules[polymer] -= count
+        rule_count = new_rules.copy()
+        #print("END OF LOOP")
+        #print(f"New list of rules: \n{new_rules}")
+        #print()
+        
+
+
+
+    print("DONE WITH LOOPING")
+    final_string += polymer_template[-1]
+    print()
+    print(len(polymer))
+    print(final_string)
+
+    print(type_dict)
+    
     print(max(type_dict.values()))
     print(min(type_dict.values()))
 
