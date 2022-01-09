@@ -68,6 +68,8 @@ def aoc2021_15_2(filename):
 
     map_size_horiz = len(large_map[0])
     map_size_vert = len(large_map)
+    max_dist = map_size_horiz + map_size_horiz
+    print(max_dist)
 
     #for i in range(8):
     #    number_to_remove = i + 1
@@ -80,33 +82,36 @@ def aoc2021_15_2(filename):
     print(f"Cols: {risk_map.shape[1]}")
     risk_map[0, 0] = 0
     #print(risk_map)
-    for man_dist in range(1,1100):
-        #print(f"Manhattan Distance Check: {man_dist}")
-        list_of_coords = []
-        for i in range(man_dist + 1):
-            list_of_coords.append([i , (man_dist - i)])
-        filtered_coords = filterList(list_of_coords)
-        #print(f"Coords to Check: {filtered_coords}")
-        for coord in filtered_coords:
-            risk_map[coord[0], coord[1]] = man_dist#<-- shows the man-distance progression
-            #cost to enter this coordinate =
-            cost_to_enter = large_map[coord[0]][coord[1]]
-            lowest_neighbor_loc = get_lowest_neighbor(coord[1], coord[0])
-            
-            if lowest_neighbor_loc == None:
-                lowest_neighbor_risk = 5
-            else:
-                lowest_neighbor_risk = risk_map[lowest_neighbor_loc[0], lowest_neighbor_loc[1]]
-            #print(f"  Lowest neighbor location: {lowest_neighbor_loc}, ")
-            #print(lowest_neighbor_risk)
-            risk_map[coord[0], coord[1]] = cost_to_enter + lowest_neighbor_risk
-            #TODO evaluate left and top neighbors
-        #printMap(full_map)
-        #print(risk_map)
+    loop_count = 10
+    for loopno in range(loop_count):
+        for man_dist in range(1,max_dist):
+            #print(f"Manhattan Distance Check: {man_dist}")
+            list_of_coords = []
+            for i in range(man_dist + 1):
+                list_of_coords.append([i , (man_dist - i)])
+            filtered_coords = filterList(list_of_coords)
+            #print(f"Coords to Check: {filtered_coords}")
+            for coord in filtered_coords:
+                risk_map[coord[0], coord[1]] = man_dist#<-- shows the man-distance progression
+                #cost to enter this coordinate =
+                cost_to_enter = large_map[coord[0]][coord[1]]
+                lowest_neighbor_loc = get_lowest_neighbor(coord[1], coord[0])
+                
+                if lowest_neighbor_loc == None:
+                    lowest_neighbor_risk = 5
+                else:
+                    lowest_neighbor_risk = risk_map[lowest_neighbor_loc[0], lowest_neighbor_loc[1]]
+                #print(f"  Lowest neighbor location: {lowest_neighbor_loc}, ")
+                #print(lowest_neighbor_risk)
+                risk_map[coord[0], coord[1]] = cost_to_enter + lowest_neighbor_risk
+            #printMap(full_map)
+        print(f"End of loop #{loopno + 1}")
+        #printMap(risk_map)
         #print()
 
 
-    print(risk_map)
+    print("\n\nFinal risk map:")
+    #printMap(risk_map)
     
     answer = risk_map[risk_map.shape[0] - 1, risk_map.shape[1] - 1]
         
@@ -118,7 +123,10 @@ def aoc2021_15_2(filename):
 def printMap(map_input):
     for row in range(len(map_input)):
         for col in range(len(map_input[0])):
-            print(map_input[row][col], end=" ")
+            char = map_input[row][col]
+            if len(str(char)) == 1:
+                char = " " + str(char)
+            print(char, end=" ")
         print()
     print()
 
