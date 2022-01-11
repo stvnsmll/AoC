@@ -45,9 +45,9 @@ def aoc2021_16_2(filename):
     print()
     print(f"Sum of versions: {total_versions}")
     print(f"  remaining bits: {remaining_bits}")
-    print(f"  final solution: {solved_packet_value}")
+    print(f"  final solution: {solved_packet_value[0]}")
     
-    answer = solved_packet_value
+    answer = solved_packet_value[0]
         
     print(f"\nSolution: {answer}")
     
@@ -142,7 +142,7 @@ def decode_packet(fullpacket, extra_offset):
 
 
 def decode_packet2(remaining_bits):
-    print(f"Starting a packet decode (v2) on string: \n{remaining_bits}")
+    print(f"Starting a packet decode (v2)")# on string: \n{remaining_bits}")
     if len(str(remaining_bits)) < 8:
         return [0,0,4001,4001]
     versionsum = 0
@@ -157,7 +157,8 @@ def decode_packet2(remaining_bits):
         print(f"  Packet length: {packet_length} (length to offset if nested)")
         print(f"  Integer literal value: {literal_value}")
         remaining_bits = remaining_bits[packet_length:]
-        print(f"  Remaining bits: {remaining_bits}")
+        #print(f"  Remaining bits: {remaining_bits}")
+        solved_packet_value = [literal_value]
     else:
         #this typeID is an operator
         lengthID = int(remaining_bits[6], 2)
@@ -174,12 +175,15 @@ def decode_packet2(remaining_bits):
             list_of_values = []
             while exit == 0:
                 [versions, remaining_bits, new_offset, packet_values] = decode_packet2(remaining_bits)
-                total_offsets += new_offset
-                versionsum += versions
-                list_of_values += packet_values
-                print(f"  total_offsets =  {total_offsets}")
-                print(f"  sub_packet_len =  {sub_packet_len}")
-                print(f"  sub_packet_values = {packet_values}")
+                if packet_values == 4001:
+                    exit = 1
+                else:
+                    total_offsets += new_offset
+                    versionsum += versions
+                    list_of_values += packet_values
+                    print(f"  total_offsets =  {total_offsets}")
+                    print(f"  sub_packet_len =  {sub_packet_len}")
+                    print(f"  sub_packet_values = {packet_values}")
                 if total_offsets >= sub_packet_len:
                     exit = 1
             packet_length = (7 + 15 + sub_packet_len)#remaining_bits[(7 + 15 + sub_packet_len):]
@@ -190,12 +194,14 @@ def decode_packet2(remaining_bits):
             sub_packets_count = int(remaining_bits[7:(7 + 11)], 2)
             print(f"  LenID = 1, number of sub-packets: {sub_packets_count}")
             remaining_bits = remaining_bits[(7 + 11):]
-            print(remaining_bits)
-            total_offsets = 0
+            #print(remaining_bits)
+            total_offsets = 7 + 11
             list_of_values = []
             for k in range(sub_packets_count):
                 print(k)
                 [versions, remaining_bits, new_offset, packet_values] = decode_packet2(remaining_bits)
+                if packet_values == 4001:
+                    continue
                 versionsum += versions
                 total_offsets += new_offset
                 list_of_values += packet_values
@@ -205,7 +211,54 @@ def decode_packet2(remaining_bits):
     return [versionsum, remaining_bits, packet_length, solved_packet_value]
 
 def solve_packet(typeID, list_of_values):
-    return 42
+    print(f"Type ID = {typeID}")
+    print(f"  List of values = {list_of_values}")
+    if typeID == 0:
+        #sum of all values in the list of values
+        sum_total = 0
+        for value in list_of_values:
+            sum_total += value
+        print(f"  Type = SUM\n  Sum total = {sum_total}")
+        return [sum_total]
+    elif typeID == 1:
+        #product of all values in the list of values
+        product_total = 1
+        for value in list_of_values:
+            product_total *= value
+        print(f"  Type = PRODUCT\n  Product total = {product_total}")
+        return [product_total]
+    elif typeID == 2:
+        #minimum of all values in the list of values
+        min_value = min(list_of_values)
+        print(f"  Type = MinVal\n  Minimum value = {min_value}")
+        return [min_value]
+    elif typeID == 3:
+        max_value = max(list_of_values)
+        print(f"  Type = MaxVal\n  Maximum value = {max_value}")
+        return [max_value]
+    elif typeID == 5:
+        #greater than: return 1 if value 1 > value 2, otherwise return 0 (packet length == 2)
+        if len(list_of_values) != 2:
+            print("\n\nERROR!!! PACKET LENGTH NOT 2!!!\n\n\n")
+            return False
+        if list_of_values[0] > list_of_values[1]:
+            print(f"  Type = GREATER\n  {list_of_values[0]} is greather than {list_of_values[1]}")
+            return [1]
+        return [0]
+    elif typeID == 6:
+        #less than: return 1 if value 1 < value 2, otherwise return 0 (packet length == 2)
+        if list_of_values[0] < list_of_values[1]:
+            print(f"  Type = LESS\n  {list_of_values[0]} is less than {list_of_values[1]}")
+            return [1]
+        return [0]
+    elif typeID == 7:
+        #equal to: return 1 if value 1 = value 2, otherwise return 0 (packet length == 2)
+        if list_of_values[0] == list_of_values[1]:
+            print(f"  Type = EQUALS\n  {list_of_values[0]} equals {list_of_values[1]}")
+            return [1]
+        return [0]
+    else:
+        return [42]
 
 if __name__ == "__main__":
    aoc2021_16_2("input.txt")

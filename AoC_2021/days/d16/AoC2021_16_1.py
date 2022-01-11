@@ -39,6 +39,7 @@ def aoc2021_16_1(filename):
         #print(binarychar)
     print()
     #binaryFull = "0101001000100100"
+    print("Full binary data: (starting value for everything)")
     print(binaryFull)
 
     [total_versions, remaining_bits, packet_length] = decode_packet2(binaryFull)
@@ -141,9 +142,9 @@ def decode_packet(fullpacket, extra_offset):
 
 
 def decode_packet2(remaining_bits):
-    print(f"Starting a packet decode (v2) on string: \n{remaining_bits}")
+    print(f"\nStarting a packet decode (v2) on string: \n{remaining_bits}")
     if len(str(remaining_bits)) < 8:
-        return [0,0,4000]
+        return [0,0,10]
     versionsum = 0
     version = int(remaining_bits[0:3], 2)
     versionsum += version
@@ -185,13 +186,17 @@ def decode_packet2(remaining_bits):
             print(f"  LenID = 1, number of sub-packets: {sub_packets_count}")
             remaining_bits = remaining_bits[(7 + 11):]
             print(remaining_bits)
-            total_offsets = 0
+            total_offsets = 7 + 11
             for k in range(sub_packets_count):
-                print(k)
+                print(f"  loop # {k + 1}...")
                 [versions, remaining_bits, new_offset] = decode_packet2(remaining_bits)
-                versionsum += versions
-                total_offsets += new_offset
-            packet_length = total_offsets
+                if new_offset == 4001:
+                    continue
+                else:
+                    versionsum += versions
+                    total_offsets += new_offset
+                    packet_length = total_offsets
+            print(f"  Finished {sub_packets_count} loops, with a total offset of: {total_offsets}")
     return [versionsum, remaining_bits, packet_length]
 
 
