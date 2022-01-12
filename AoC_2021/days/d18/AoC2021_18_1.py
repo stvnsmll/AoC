@@ -5,15 +5,15 @@
 # stvnsmll              #
 # XX.01.22              #
 #                       #
-# Day XX, Part 1        #
+# Day 18, Part 1        #
 #########################
 
 from datetime import datetime
 
 
-def aoc2021_XX_1(filename):
+def aoc2021_18_1(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day XX, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 18, Part 1\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -42,4 +42,4 @@ def aoc2021_XX_1(filename):
 
 
 if __name__ == "__main__":
-   aoc2021_XX_1("input.txt")
+   aoc2021_18_1("input.txt")

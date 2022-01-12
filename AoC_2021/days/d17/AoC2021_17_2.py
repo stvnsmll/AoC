@@ -5,7 +5,7 @@
 # stvnsmll              #
 # 12.01.22              #
 #                       #
-# Day 17, Part 1        #
+# Day 17, Part 2        #
 #########################
 
 from datetime import datetime
@@ -13,9 +13,9 @@ from datetime import datetime
 tz_minx = tz_maxx = tz_miny = tz_maxy = 0
 
 
-def aoc2021_17_1(filename):
+def aoc2021_17_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 17, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 17, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -55,7 +55,7 @@ def aoc2021_17_1(filename):
     #iv = initial velocity [x_vel, y_vel]
     iv_x = 6
     iv_y = 9
-    points_to_check = 1000
+    points_to_check = 300
 
     """ found = calc_path(iv_x, iv_y, points_to_check)
     print("\n")
@@ -64,10 +64,18 @@ def aoc2021_17_1(filename):
     else:
         print("No landing in zone, or not enough points to check") """
 
+    #values for testing (the smaller closer target zone)
     iv_x_min = 1
-    iv_x_max = 20
-    iv_y_min = 0
-    iv_y_max = 120
+    iv_x_max = 35
+    iv_y_min = -20
+    iv_y_max = 140
+
+    if __name__ == "__main__":
+        #values for official run (the full puzzle target zone)
+        iv_x_min = 1
+        iv_x_max = 181
+        iv_y_min = -120
+        iv_y_max = 120
 
     print(f"Running through x range: [{iv_x_min}, {iv_x_max}], y range: [{iv_y_min}, {iv_y_max}]")
 
@@ -80,7 +88,8 @@ def aoc2021_17_1(filename):
                 solns.append(found)
         if xvel%5 == 0:
             print(xvel)
-        
+    
+    print()
     #print(solns)
     
     max_of_solns = 0
@@ -88,7 +97,9 @@ def aoc2021_17_1(filename):
         if soln[3] > max_of_solns:
             max_of_solns = soln[3]
     
-    answer = max_of_solns
+    print(f"Number of solutions: {len(solns)}")
+    
+    answer = len(solns)
         
     print(f"\nSolution: {answer}")
     
@@ -129,13 +140,13 @@ def calc_path(iv_x, iv_y, points_to_check):
             exit = 1
             #print(f"\n FOUND A POINT IN THE ZONE!!\n   [{current_x}, {current_y}]")
             found_in_zone = [True, current_x, current_y, max_y]
-        else:
+            """         else:
             if (current_x > (tz_maxx + 100)) or (current_y < (tz_maxy - 100)):
-                return [False]
+                return [False] """
         loop_count += 1
         if loop_count == points_to_check:
             exit = 1
     return found_in_zone
 
 if __name__ == "__main__":
-   aoc2021_17_1("input.txt")
+   aoc2021_17_2("input.txt")
