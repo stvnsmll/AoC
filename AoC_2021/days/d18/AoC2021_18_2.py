@@ -5,15 +5,15 @@
 # stvnsmll              #
 # 13.01.22              #
 #                       #
-# Day 18, Part 1        #
+# Day 18, Part 2        #
 #########################
 
 from datetime import datetime
 
 
-def aoc2021_18_1(filename):
+def aoc2021_18_2(filename):
     if __name__ != "__main__":
-        print("\nAoC 2021, Day 18, Part 1\n~~ running as a test ~~")
+        print("\nAoC 2021, Day 18, Part 2\n~~ running as a test ~~")
 
     startTime = datetime.now()
 
@@ -32,21 +32,18 @@ def aoc2021_18_1(filename):
 
     print(input_data)
     print()
-    full_string = check_rules_looper(input_data[0])
-    for i in range(len(input_data) - 1):
-        full_string = "[" + full_string + "," + input_data[i + 1] + "]"
-        #print(full_string)
-        full_string = check_rules_looper(full_string)
-        #print(f"New full string: \n{full_string}")
-        #print()
+    solution_list = []
+    for str1 in input_data:
+        for str2 in input_data:
+            if str1 != str2:
+                added_str = "[" + str1 + "," + str2 + "]"
+                resultant = check_rules_looper(added_str)
+                one_mag = get_magnitude(resultant)
+                solution_list.append(one_mag)
 
-    string_data = full_string
+    print(len(solution_list))
 
-    string_magnitude = get_magnitude(string_data)
-    print()
-    print(string_magnitude)
-    
-    answer = string_magnitude
+    answer = max(solution_list)
         
     print(f"\nSolution: {answer}")
     
@@ -224,4 +221,4 @@ def split_str(incoming_string):
 
 
 if __name__ == "__main__":
-   aoc2021_18_1("input.txt")
+   aoc2021_18_2("input.txt")
