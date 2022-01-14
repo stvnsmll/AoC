@@ -9,6 +9,7 @@
 #########################
 
 from datetime import datetime
+import numpy as np
 
 
 def aoc2021_19_1(filename):
@@ -31,6 +32,24 @@ def aoc2021_19_1(filename):
     input_data_file.close()
 
     print(input_data)
+
+    '''
+    (0, 1) --> rotates into the screen
+    (1, 0) --> rotates forward out of the screen
+    (0, 2) --> rotates left
+    (2, 0) --> rotates right
+    (1, 2) --> rotates counterclockwise
+    (2, 1) --> rotates clockwise
+    '''
+    
+    arr1 = np.array([[[1,2],[3,4]],[[5,6],[7,8]]])
+    print(arr1)
+    for i in range(3):
+        b = np.rot90(arr1, (i + 1), (2, 1))
+        print(f"After rotating arr ({i +1} times):\n",b)
+    print()
+
+
     
     answer = 0
         
